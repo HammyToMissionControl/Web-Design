@@ -1,0 +1,30 @@
+﻿@model Auth.Models.Basket
+
+
+<table>
+    <thead>
+        <tr>
+            <th> </th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var x in Model.Products)
+        {
+            <tr>
+                <td><img src="@x.Product.ImagePath"></td>
+                <td>@x.Product.Name</td>
+                <td>@x.Product.Description</td>
+                <td>@x.Quantity</td>
+                <td>@((x.Product.Price * x.Quantity).ToString("C"))</td>
+            </tr>
+        }
+    </tbody>
+    <tr>
+        <td>Product total: </td>
+        <td>@Model.Products.Sum(s => s.Product.Price * s.Quantity).ToString("C")</td>
+    </tr>
+</table>

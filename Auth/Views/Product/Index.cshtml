@@ -1,0 +1,28 @@
+﻿@model List<Auth.Models.Product>
+
+
+<div class="row">
+    @foreach(var x in Model)
+    {
+        <div class="col-md-3">
+            <div class="card">
+                <img src="@x.ImagePath" class="card-img-top" alt="@x.Name">
+                <h4 class="product-name">@x.Name</h4>
+                <p class="product-desc">@x.Description</p>
+                <p class="product-price">@x.Price</p>
+                <p class="product-category">@x.Category.Name</p>
+                <form asp-action="AddToBasket" asp-controller="Basket" method="post">
+                    <input type="hidden" name="productId" value="@x.Id">
+                    <input type="number" name="quantity" value="1" min="1" max="@x.Quantity">
+                    <button type="submit">Add to basket</button>
+                </form>
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <a asp-action="editProduct" asp-route-id="@x.Id" class="btn btn-warning">Edit</a>
+                }
+            </div>
+        </div>
+    }
+</div>
+

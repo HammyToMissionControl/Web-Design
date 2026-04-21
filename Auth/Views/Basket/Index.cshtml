@@ -28,3 +28,7 @@
         <td>@Model.Products.Sum(s => s.Product.Price * s.Quantity).ToString("C")</td>
     </tr>
 </table>
+
+<form asp-action="Checkout" asp-controller="Checkout" method="post">
+    <button type="submit" class="btn btn-success">Checkout</button>
+</form>
